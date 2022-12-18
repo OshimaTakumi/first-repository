@@ -11,10 +11,10 @@ class PostController extends Controller
     public function index(Post $post)
     {
     return view('posts/index')->with(['posts' => $post->getPaginateByLimit(5)]);
-        
+    
     }
     
-    public function show(Post $post)
+     public function show(Post $post)
     {
     return view('posts/show')->with(['post' => $post]);
     }
@@ -42,5 +42,11 @@ class PostController extends Controller
         $post->fill($input_post)->save();
         
         return redirect('/posts/' .$post->id);
+    }
+    
+    public function delete(Post $post)
+    {
+        $post->delete();
+        return redirect('/');
     }
 }
